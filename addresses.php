@@ -131,9 +131,6 @@ function iarray(){
 
 // Loop the Records
 	$records = array();
-	$total = 0;
-	$tax = 0;
-	$shipping = 0;
 	foreach($list as $i => $k){
 		$s = $k;
 		if($s['Address'][1] == $s['Address'][2]){
