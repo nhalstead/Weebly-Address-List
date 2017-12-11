@@ -108,8 +108,7 @@ function iarray(){
 							1 => $data[$h['SHIPPING ADDRESS']],
 							2 => $data[$h['SHIPPING ADDRESS 2']],
 							3 => $data[$h['SHIPPING CITY']] .", ". $data[$h['SHIPPING REGION']] ." ". $data[$h['SHIPPING POSTAL CODE']],
-						),
-						"Content" => $data[$h['PRODUCT NAME']]
+						)
 					);
 				}
 				else {
