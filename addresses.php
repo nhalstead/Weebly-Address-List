@@ -151,7 +151,7 @@ function iarray(){
 		"Date From: " => date(DATE, $matches[2]),
 		"Date To: " => date(DATE, $matches[3]),
 		"Total Processed Rows of Data:" => count($list),
-		"Total Address in Data" => count($records),
+		"Total Address in Data:" => count($records),
 		"&nbsp;" => "&nbsp;",
 		"<small>File Name:</small>" => "<small>".$file."</small>",
 		"<small>Date of Index Creation:</small>" => "<small>".date(DATE)."</small>",
