@@ -4,12 +4,13 @@ $file = "orders-[SHOP_NAME]-weebly-com-[START]-[END].csv";
 date_default_timezone_set("EST");
 $explain = true;
 $catch = array("BILLING NAME", "DATE", "ORDER #", "SHIPPING COUNTRY", "SHIPPING FIRST NAME", "SHIPPING LAST NAME", 
-	"SHIPPING ADDRESS", "SHIPPING ADDRESS 2", "SHIPPING POSTAL CODE", "SHIPPING CITY", "SHIPPING REGION", "SHIPPING COUNTRY", "PRODUCT NAME");
+	"SHIPPING ADDRESS", "SHIPPING ADDRESS 2", "SHIPPING POSTAL CODE", "SHIPPING CITY", "SHIPPING REGION", "SHIPPING COUNTRY", "PRODUCT NAME", "STATUS");
 $catchIndex = array();
 $catchNUM = array();
 $list = array();
 $row = 1;
 $empty = 0;
+$cancelled = 0;
 $Tnum = 0;
 define("DATE", "F j, Y @ g:i A");
 
@@ -99,7 +100,10 @@ function iarray(){
 			}
 			else {
 				$h = iarray();
-				if( !empty( $data[ $h['SHIPPING REGION'] ] ) ){
+				if( $data[$h['STATUS']] == "cancelled" ){
+					$cancelled++;
+				}
+				else if( !empty( $data[ $h['SHIPPING REGION'] ] ) ){
 					$list[] = array(
 						"Name" => strtoupper( $data[$h['SHIPPING FIRST NAME']] ." ". $data[$h['SHIPPING LAST NAME']] ),
 						"Date" => strtoupper( $data[$h['DATE']] ),
@@ -154,6 +158,7 @@ function iarray(){
 		"<small>File Creation Time:</small>" => "<small>".date(DATE, filectime($file))." (". time_elapsed_string('@'.filectime($file)) .")</small>",
 		"<small>File Hash:</small>" => "<small>".md5_file($file)."</small>",
 		"<small>Rows considered to be Empty:</small>" => "<small>".$empty."</small>",
+		"<small>Cancelled Orders:</small>" => "<small>".$cancelled."</small>",
 		"<small>Total Read Calls:</small>" => "<small>".$Tnum."</small>",
 	);
 	echo "<table style='font-size:15px;'>";
